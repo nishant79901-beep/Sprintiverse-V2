@@ -1,1 +1,1 @@
-import './AppFixed.jsx';
+import './Entry.jsx';
