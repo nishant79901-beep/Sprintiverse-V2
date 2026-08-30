@@ -1,5 +1,5 @@
-# Sprintiverse V2
+# Sprintiverse
 
-Clean slate. All previous application code has been removed.
+Professional customer support helpdesk SaaS.
 
-We will rebuild from scratch.
+Built from scratch with a clean, modern UI.
