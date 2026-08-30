@@ -6,7 +6,7 @@ if(s.includes(oldImport)) s=s.replace(oldImport,"MoreHorizontal,Clock,UserRound,
 if(!s.includes('const PLAN=')) s=s.replace("const AG=[", "const PLAN=[['Starter','₹1,599/mo','2 seats · 500 tickets'],['Growth','₹4,099/mo','5 seats · 2,500 tickets'],['Pro','₹8,299/mo','15 seats · 10,000 tickets']];const AG=[");
 s=s.replace(/\bP\.map\(/g,'PLAN.map(');
 if(!s.includes("await db.rpc('seed_sample_data'")) s=s.replace("if(store)await db.from('integrations').insert({workspace_id:data,provider:store,status:'pending'});sessionStorage.setItem('workspace_id',data);nav('/billing')", "if(store)await db.from('integrations').insert({workspace_id:data,provider:store,status:'pending'});await db.rpc('seed_sample_data',{w:data});sessionStorage.setItem('workspace_id',data);localStorage.setItem('workspace_id',data);nav('/billing')");
-s=s.replace("const x=Date.now()+86400000;localStorage.setItem(key,x);setEnd(x);nav('/app')", "const x=Date.now()+86400000;const workspaceId=sessionStorage.getItem('workspace_id')||localStorage.getItem('workspace_id');if(workspaceId)await db.rpc('start_workspace_trial',{w:workspaceId});localStorage.setItem(key,x);setEnd(x);nav('/app')");
+s=s.replace("const start=()=>{const x=Date.now()+86400000;localStorage.setItem(key,x);setEnd(x);nav('/app')}", "const start=async()=>{const x=Date.now()+86400000;const workspaceId=sessionStorage.getItem('workspace_id')||localStorage.getItem('workspace_id');if(workspaceId)await db.rpc('start_workspace_trial',{w:workspaceId});localStorage.setItem(key,x);setEnd(x);nav('/app')}");
 const start=s.indexOf('function Profile(');
 const end=s.indexOf('function Metric(',start);
 if(start>=0&&end>start){
